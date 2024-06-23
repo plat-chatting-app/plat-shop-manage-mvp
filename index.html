@@ -2,48 +2,7 @@
 <head>
     <title>쿠폰 등록</title>
     <link rel="stylesheet" href="coupon_register.css">
-    <script src="js/coupon_register.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.menu_checkbox');
-            const priceInput = document.querySelector('input[name="price"]');
-
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    if (this.checked) {
-                        // Update the price input field with the price of the selected menu item
-                        const menuItem = this.closest('.menu_item');
-                        const menuItemPrice = menuItem.querySelector('.menu_item_price').textContent.replace(' 원', '').replace(',', '');
-                        priceInput.value = parseInt(menuItemPrice);
-                        
-                        // Uncheck other checkboxes
-                        checkboxes.forEach(cb => {
-                            if (cb !== this) {
-                                cb.checked = false;
-                            }
-                        });
-                    }
-                });
-            });
-
-            const quantityElement = document.querySelector('.quantity');
-            const quantityMinusButton = document.querySelector('.quantity_minus');
-            const quantityPlusButton = document.querySelector('.quantity_plus');
-
-            quantityMinusButton.addEventListener('click', function() {
-                let quantity = parseInt(quantityElement.textContent);
-                if (quantity > 1) {
-                    quantityElement.textContent = quantity - 1;
-                }
-            });
-
-            quantityPlusButton.addEventListener('click', function() {
-                let quantity = parseInt(quantityElement.textContent);
-                quantityElement.textContent = quantity + 1;
-            });
-        });
-
-    </script>
+    <script type="module" src="js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -53,25 +12,7 @@
     <div class="choose_menu_container">
         <div class="choose_title"><div class="choose_title_text title">상품 선택</div></div>
         <div class="menu_list_container">
-            <ul class="menu_list">
-                <li class="menu_item">
-                    <img class="menu_item_image" src="images/menu1.jpg">
-                    <div class="menu_item_name">부대찌개 (1인)</div>
-                    <div class="menu_item_price">9000 원</div>
-                    <input type="checkbox" name="1" class="menu_checkbox">
-                </li>
-                <li class="menu_item">
-                    <img class="menu_item_image" src="images/menu2.jpg">
-                    <div class="menu_item_name">안동찜닭 (1인)</div>
-                    <div class="menu_item_price">15000 원</div>
-                    <input type="checkbox" name="1" class="menu_checkbox">
-                </li>
-                <li class="menu_item">
-                    <img class="menu_item_image" src="images/menu2.jpg">
-                    <div class="menu_item_name">제육볶음 (2인)</div>
-                    <div class="menu_item_price">11000 원</div>
-                    <input type="checkbox" name="1" class="menu_checkbox">
-                </li>
+            <ul id="menu_list" class="menu_list"></ul>
         </div>
     </div>
     <div class="choose_details">
